@@ -1,0 +1,61 @@
+"use strict";
+/* ================= SECTION 1: CONFIG & TRANSLATIONS ================= */
+const DEFAULT_CATS={income:["Salary","Business Income","Other Income"],
+ expense:["Food","Housing","Transport","Shopping","Healthcare","Insurance","Education","Entertainment","Telephone","Internet","Other Expenses"]};
+const METHODS=["Cash","Card","Bank Transfer","Direct Debit","Other"];
+const THEMES=[["light","Light","#f4f6f8"],["dark","Dark","#12181f"],["green","Green","#eef5ef"],["blue","Blue","#eaf1fa"],["gray","Gray","#e9ebee"]];
+const NAV=[["home","⌂"],["add","＋"],["transactions","≡"],["reports","▤"],["import","⇪"],["backup","⛁"],["help","?"]];
+const MONTHS={en:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]};
+const EN={
+ home:"HOME",add:"ADD",transactions:"TRANSACTIONS",reports:"REPORTS",import:"IMPORT PDF",backup:"BACKUP",help:"HELP",
+ settings:"Settings",opening:"Opening Balance",income:"Income",expense:"Expense",totalIncome:"Total Income",totalExpenses:"Total Expenses",
+ finalBalance:"Final Balance",netBalance:"Net Balance",recent:"Recent Transactions",monthly:"Monthly Summary",byCat:"Expense by Category",
+ period:"Period (month)",addIncome:"ADD INCOME",addExpense:"ADD EXPENSE",editTx:"EDIT TRANSACTION",date:"Date",amount:"Amount (€)",category:"Category",
+ description:"Description",method:"Payment Method",notes:"Notes (optional)",save:"Save",cancel:"Cancel",edit:"Edit",del:"Delete",details:"Details",
+ search:"Search",from:"From",to:"To",all:"All",newest:"Newest first",oldest:"Oldest first",type:"Type",total:"Total",none:"No transactions.",
+ saved:"Saved successfully.",confirmDel:"Delete this transaction?",yes:"Yes",no:"No",close:"Close",language:"Language",theme:"Appearance",light:"Light",dark:"Dark",
+ saveOpening:"Save Opening Balance",reset:"Reset Application Data",confirmReset:"All transactions and categories will be permanently deleted. Continue?",
+ categories:"Manage Categories",newCat:"New category",add_:"Add",rename:"Rename",invalidAmt:"Enter a valid amount greater than 0 (max 2 decimals).",
+ invalidDate:"Enter a valid date.",needDesc:"Description is required.",needCat:"Select a category.",
+ info:"Application Information",currency:"Currency: Euro (€) only",dateFmt:"Date format: DD-MM-YYYY",storageNote:"Data is stored encrypted in this browser's IndexedDB. Clearing browser data will erase it, so create backups regularly.",
+ methodsL:"Payment Method",noteSet:"Settings saved.",catInUse:"Category is in use and cannot be deleted.",catExists:"This category already exists.",catName:"Category name",
+ monthlyReport:"Monthly Report",yearlyReport:"Yearly Report",year:"Year",month:"Month",exportCsv:"Export CSV",print:"Print",
+ incVsExp:"Income vs Expenses",monthlyIncome:"Monthly Income",monthlyExpenses:"Monthly Expenses",monthlyNet:"Monthly Net Balance",monthlyFinal:"Monthly Final Balance",
+ yearlyIncome:"Yearly Income",yearlyExpenses:"Yearly Expenses",yearlyNet:"Yearly Net Balance",monthlyComparison:"Monthly Income and Expense Comparison",
+ noData:"No data for this period.",reportOf:"Report",monthlyDetails:"Monthly Transactions (Details)",
+ password:"Password",confirmPassword:"Confirm password",setupTitle:"Create your password",loginTitle:"Unlock MyPET Super",
+ setupInfo:"Your financial data is encrypted with a key protected by this password. Existing data in this browser will be encrypted when you continue.",
+ pwWarn:"If you forget this password, your data cannot be recovered. There is no password reset or bypass.",
+ pwShort:"Password must be at least 8 characters.",pwMismatch:"The passwords do not match.",wrongPw:"Incorrect password.",
+ unlock:"Unlock",setPassword:"Set password",forgot:"Forgot password? Erase all data",working:"Working… please wait.",
+ autoLocked:"Locked after 5 minutes of inactivity.",loggedOut:"The app is locked.",logout:"Logout",
+ changePw:"Change Password",currentPw:"Current password",newPw:"New password",pwChanged:"Password changed.",
+ eraseTitle:"Erase all data",eraseInfo:"This permanently deletes ALL data and the password in this browser. It cannot be undone. Type DELETE to confirm.",eraseBtn:"Erase everything",
+ createBackup:"Create Encrypted Backup",backupInfo:"Includes all transactions, categories, opening balance and settings. The file is encrypted with the backup password you choose now.",
+ backupPw:"Backup password",downloadBackup:"Download backup",backupDone:"Encrypted backup created and downloaded. Keep the file and its password safe.",
+ restoreBackup:"Restore Backup",backupFile:"Backup file",verifyPreview:"Verify and preview",pickFile:"Select a backup file first.",enterBackupPw:"Enter the backup password.",
+ errNotBackup:"This is not a supported MyPET backup file.",errStructure:"The backup file is damaged or has an invalid structure.",errPw:"Wrong password, or the backup file is damaged.",
+ errData:"The backup contents are invalid and were not imported:",restorePreview:"Restore preview",catCount:"Categories",periodL:"Date range",
+ restoreReplaceWarn:"Restoring REPLACES all current data. Your current data is first saved to an encrypted safety backup file that is downloaded to your device.",
+ safetyPw:"Password for the safety backup of your current data",restoreBtn:"Restore now",confirmRestore:"Replace all current data with this backup?",
+ restoreDone:"Backup restored successfully.",corruptWarn:"Some stored records could not be read. Totals may be incomplete.",errGeneric:"Something went wrong: ",
+ importTitle:"Import bank statement (PDF)",importInfo:"Text-based bank statement PDFs only (no scanned images). The file is read inside this browser and is never uploaded. Nothing is saved until you review the rows and confirm.",
+ extract:"Read PDF",pickPdf:"Select a PDF file first.",
+ errPdfLib:"The PDF reader library could not be loaded. Put pdf.min.mjs and pdf.worker.min.mjs in the LIBRARY folder next to MyPET.html and open MyPET through a local web server or HTTPS (not file://).",
+ errPdfPw:"This PDF is password-protected. Remove the protection first and try again.",errPdfBad:"This file could not be read as a PDF.",
+ errPdfBig:"The PDF is too large (max 30 MB and 100 pages).",errPdfNoText:"No text was found in this PDF. It may be a scanned image; scanned PDFs are not supported.",
+ errPdfNoRows:"No transactions could be recognised in this PDF. Its layout may not be supported.",
+ foundRows:"transactions found",skippedRows:"dated lines without an amount were skipped",
+ yearNote:"Some dates in the PDF have no year; the year was inferred from the statement's own dates. Please check every date.",
+ flagNote:"Rows marked with a warning could not be read with certainty and are unselected by default. Check them against your statement.",
+ sectionN:"Section",closingBal:"Closing balance",reconOk:"matches the statement balance",reconBad:"does NOT match the statement balance, difference",reconNone:"balance check not possible",
+ dupBadge:"Possible duplicate",flagType:"direction guessed",flagAmb:"amount unclear",flagBal:"balance mismatch",flagDate:"date unclear",flagYear:"year guessed",flagBoth:"debit and credit both present",
+ includeSection:"Include this section",selAll:"Select all",selNone:"Select none",selectedL:"selected",importBtn:"Import selected",discardPdf:"Discard preview",
+ nothingSel:"Select at least one row.",rowInvalid:"Please fix this row first:",confirmImport:"Import the selected rows into your records?",
+ dupSelected:"The selection includes possible duplicates.",importDone:"Imported successfully:",txCount:"transactions",
+ dashboard:"Dashboard",homeSub:"Your personal finance overview at a glance.",totalExpense:"Total Expense",curBalance:"Current Balance",
+ quick:"Quick Actions",qaIncome:"Record money received",qaExpense:"Record money spent",viewTx:"View Transactions",qaTx:"Search and manage records",
+ recent7:"Recent Transactions (last 7 days)",sno:"S.No",balance:"Balance",noRecent:"No transactions in this period.",last5:"Last 5 Records",
+ lockConfirm:"Lock the app now? You will need your password to unlock it.",themeTitle:"Theme",tPrint:"Print",tBackup:"Backup",tSettings:"Settings",tTheme:"Theme",tLock:"Lock"
+};
+

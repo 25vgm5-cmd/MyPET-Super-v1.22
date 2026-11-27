@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyPET Super v1.22 – My Personal Expense Tracker</title>
+<meta name="theme-color" content="#f4f6f8">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+ <nav id="nav"></nav>
+ <main>
+  <div class="top"><div class="ttl"><h1 id="title"></h1><div class="sub" id="sub"></div></div>
+   <div class="tools noprint"><div class="mbrand">MyPET Super</div><div class="clock" id="clock"></div>
+    <button class="ibtn" id="tbPrint" title="Print" aria-label="Print"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></button>
+    <button class="ibtn" id="tbBackup" title="Backup" aria-label="Backup"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></button>
+    <button class="ibtn" id="tbSettings" title="Settings" aria-label="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+    <button class="ibtn" id="tbTheme" title="Theme" aria-label="Theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button>
+    <button class="ibtn lk" id="tbLock" title="Lock" aria-label="Lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></button>
+   </div><div class="printhead" id="ph"></div></div>
+  <div id="view"></div>
+ </main>
+</div>
+<div id="lock"></div>
+<dialog id="dlg"></dialog>
+
+<script src="js/core/config.js"></script>
+<script src="js/core/calc.js"></script>
+<script src="js/core/security.js"></script>
+<script src="js/core/pdf-parser.js"></script>
+<script src="js/core/database.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/core/ui-helpers.js"></script>
+<script src="js/core/router.js"></script>
+<script src="js/pages/home.js"></script>
+<script src="js/pages/add.js"></script>
+<script src="js/pages/transactions.js"></script>
+<script src="js/pages/reports.js"></script>
+<script src="js/pages/import.js"></script>
+<script src="js/pages/help.js"></script>
+<script src="js/pages/settings.js"></script>
+<script src="js/pages/lock.js"></script>
+<script src="js/pages/backup.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
